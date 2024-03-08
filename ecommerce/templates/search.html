@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .container {
+        margin-top: 50px; /* Adjust top margin for better spacing */
+    }
+
+    h1, h4 {
+        color: #007bff; /* Set the color for headings */
+    }
+
+    .card {
+        border: 1px solid #ddd; /* Add a border to cards */
+        border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+        margin-bottom: 20px; /* Add margin between cards */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
+    }
+
+    .card-img-top {
+        max-height: 200px; /* Set max height for card images */
+        object-fit: cover; /* Ensure images cover the entire card */
+    }
+
+    .card-title {
+        font-size: 18px; /* Set font size for card titles */
+        margin-bottom: 10px; /* Add margin below card titles */
+    }
+
+    .card-text {
+        font-size: 14px; /* Set font size for card text */
+    }
+
+    .btn-success {
+        background-color: #28a745; /* Set background color for success buttons */
+        color: #fff; /* Set text color for success buttons */
+        margin-top: 10px; /* Add margin above buttons */
+    }
+
+    .text-center b {
+        color: #dc3545; /* Set color for "No results found" text */
+    }
+</style>
+
+    <center>
+        <div class="container mt-5" style="margin-bottom: 100px;">
+            <h1 class="text-center">Search</h1>
+            <h4 class="text-center">You have searched for query {{ q }}</h4>
+
+            {% if b %}
+                <div class="row mt-4 justify-content-center">
+                    {% for i in b %}
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ i.image.url }}" class="card-img-top" alt="{{ i.name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ i.name }}</h5>
+                                    <p class="card-text">{{ i.desc }}</p>
+                                    <p class="card-text">Price: {{ i.price }}</p>
+                                    <a href="{% url 'shop:detail' i.name %}" class="btn btn-success d-block mx-auto">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center">
+                    <b><p>No results found</p></b>
+                </div>
+            {% endif %}
+        </div>
+    </center>
+{% endblock %}

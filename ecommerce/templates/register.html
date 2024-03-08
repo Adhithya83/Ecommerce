@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  /* Add these styles to your existing CSS file or within style tags in your HTML */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.registration-form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.registration-form input {
+  margin-bottom: 15px;
+}
+
+.registration-form label {
+  font-weight: bold;
+}
+
+.registration-form input[type="submit"] {
+  background-color: #dc3545;
+  color: #fff;
+  cursor: pointer;
+}
+
+.registration-form input[type="submit"]:hover {
+  background-color: #c82333;
+}
+
+</style>
+  <h3 class="text-center">REGISTER USER</h3>
+  <center>
+    <form method="POST" class="registration-form">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" name="u" placeholder="Enter the username">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" name="p" placeholder="Enter the password">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" name="c" placeholder="Confirm password">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email address</label>
+        <input type="email" class="form-control" name="e" placeholder="name@example.com">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">First name</label>
+        <input type="text" class="form-control" name="f" placeholder="Enter the first name">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control" name="l" placeholder="Enter the last name">
+      </div>
+      <div class="mb-3">
+        <input type="submit" class="form-control btn btn-danger">
+      </div>
+    </form>
+  </center>
+{% endblock %}
